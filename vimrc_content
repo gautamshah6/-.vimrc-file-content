@@ -1,0 +1,53 @@
+set shiftwidth=2
+set autoindent
+set smartindent
+set tabstop=2
+set showmatch
+set smarttab
+set expandtab
+set smartcase
+set nu
+syntax on
+
+
+" Do this in normal mode...
+"nnoremap <Left>  :echoe "Use h"<CR>
+
+
+" ...and in insert mode
+"inoremap <Left>  <ESC>:echoe "Use h"<CR>
+"inoremap <Right> <ESC>:echoe "Use l"<CR>
+"inoremap <Up>    <ESC>:echoe "Use k"<CR>
+"inoremap <Down>  <ESC>:echoe "Use j"<CR>
+
+
+inoremap ( ()<ESC>i
+inoremap " ""<ESC>i
+inoremap ' ''<ESC>i
+inoremap { {}<Esc>i
+inoremap [ []<ESC>i
+inoremap {<CR> {<CR>}<Esc>i<CR><Esc>ki<Tab><Tab>
+:autocmd filetype c nnoremap <F5> :w <bar> !g++ -ulimit -Wall -Wno-unused-result -std=c++11   -O2   % -o %:r && ./%:r <CR>
+:autocmd filetype cpp nnoremap <F5> :w <bar> !g++ -ulimit -Wall -Wno-unused-result -std=c++11   -O2   % -o %:r && ./%:r <CR>
+:autocmd filetype py nnoremap <F5> :w <bar> !python3 % -o %:r && ./%:r <CR>
+
+:autocmd BufNewFile *.c 0r ~/.vim/templates/template.c
+:autocmd BufNewFile *.cpp 0r ~/.vim/templates/template.cpp
+
+call plug#begin('~/.vim/plugged')
+
+  Plug 'ervandew/supertab'
+  Plug 'scrooloose/nerdtree'
+call plug#end()
+
+:map <C-n> :NERDTree
+
+" sometimes be convenient.
+set mouse+=a
+" Disable audible bell because it's annoying.
+set noerrorbells visualbell t_vb=
+" Enable searching as you type, rather than waiting till you press enter.
+set incsearch
+" Disable the default Vim startup message.
+set shortmess+=I
+
